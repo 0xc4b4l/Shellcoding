@@ -58,7 +58,7 @@ lea    eax,[edx+0xb] ;stores edx register + 11
 int    0x80  ; interupt, starts it
 ```
 
-## Commented /bin/sh Assembly shellcode
+## Commented /bin/sh Assembly
 ```assembly
 global _start
 section .data
