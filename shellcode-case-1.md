@@ -27,7 +27,7 @@ b:  68 6e 2f 73 68          push   0x68732f6e
 ```
 Breakdown-
 
-```x86assembly
+```x86asm
 xor    eax,eax ; zero's out the eax register
 mov    ebx,eax
 mov    al,0x17
