@@ -48,7 +48,7 @@ push   0x68732f6e ; little endian hex code "n\sh"
 push   0x69622f2f ; little endian hex code "\\bi"
 mov    ebx,esp    ; puts the address of /bin/sh into edx from esp
 ```
-Since using PUSH puts something on top of the stack, it ESP is pointing to it
+Since using PUSH puts something on top of the stack, ESP is pointing to it
 we can utilize this and load the address of /bin/sh into ebx since its being pushed into ESP
 ```assembly
 push   edx  ; pushing ebx to the stack
