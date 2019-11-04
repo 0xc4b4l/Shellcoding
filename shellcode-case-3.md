@@ -57,3 +57,13 @@ f:  5b                      pop    ebx
 46: 41                      inc    ecx
 47: cd 80                   int    0x80
 ```
+
+```assembly
+mov    al,0x66
+inc    ebx
+push   edx
+push   ebx
+push   0x2
+mov    ecx,esp
+int    0x80
+```
