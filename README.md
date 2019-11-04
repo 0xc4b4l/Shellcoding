@@ -4,5 +4,6 @@ In this repo I will be reversing and trying to understand how random shellcode p
 - Case study 1 - calling setuid(0) and spawning /bin/sh
 - Case study 2 - Reads /etc/passwd
 
-**useful command**
+**useful commands**
+
 `echo -ne <shellcode> | ndisasm -u -` to convert shellcode to ASM with ndisasm
