@@ -11,3 +11,5 @@
 \x31\xc0\xb0\x04\xb3\x01\xcd\x80\x93\xcd
 \x80
 ```
+Binary ninja graph:
+![graph](https://raw.githubusercontent.com/x00pwn/lowlevel-shellcode-analysis/master/graph_images/case2-graph.png)
