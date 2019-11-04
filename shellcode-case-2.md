@@ -64,12 +64,13 @@ mov    ebx,esp        ; putting the address and "location" of the file into ebx
 int    0x80           ; sys interupt
 ```
 
+**Reading the file** 
 ```assembly
-xchg eax,ebx
-xchg eax,ecx
-mov al,0x3
-xor edx,edx
-mov dx,0xfff
-inc edx
-int 0x80
+xchg   eax,ebx
+xchg   eax,ecx
+mov    al,0x3         ; using the (sys_read) sycall
+xor    edx,edx
+mov    dx,0xfff
+inc    edx
+int    0x80           ; sys interupt
 ```
