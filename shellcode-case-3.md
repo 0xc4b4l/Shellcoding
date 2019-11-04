@@ -59,7 +59,7 @@ f:  5b                      pop    ebx
 ```
 
 ```assembly
-mov    al,0x66
+mov    al,0x66       ; (sys_socketcall) linux syscall
 inc    ebx
 push   edx
 push   ebx
