@@ -66,24 +66,25 @@ int    0x80           ; sys interrupt
 
 **Reading the file** 
 ```assembly
-xchg   eax,ebx
+xchg   eax,ebx        ; 
 xchg   eax,ecx
 mov    al,0x3         ; using the (sys_read) sycall
 xor    edx,edx
-mov    dx,0xfff
+mov    dx,0xfff       ; the size to read from the file (4095 bytes)
 inc    edx
 int    0x80           ; sys interrupt
 ```
 
-```asembly
+```assembly
 xchg   eax,edx
-xor    eax,eax
-mov    al,0x4
-mov    bl,0x1
-int    0x80
+xor    eax,eax        ; clearing out EAX register
+mov    al,0x4         ; (sys_write) syscall
+mov    bl,0x1         ; (sys_exit) syscall
+int    0x80           ; sys interrupt
 ```
 
+**Exits without SYS_EXIT**
 ```assembly
 xchg  eax,ebx
-int   0x80          ; sys interrupt
+int   0x80            ; sys interrupt
 ```
