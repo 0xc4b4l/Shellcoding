@@ -15,8 +15,8 @@
 \x41\xcd\x80
 ```
 
+**Disassembly:**
 ```assembly
-Disassembly:
 0:  31 db                   xor    ebx,ebx
 2:  f7 e3                   mul    ebx
 4:  b0 66                   mov    al,0x66
